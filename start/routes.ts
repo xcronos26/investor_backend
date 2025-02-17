@@ -32,6 +32,8 @@ Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM
 
 Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticado
 
+//aqui vc coloca um grupo e um middleware para validar os login, assim vc so precisa fazer uma unica vez.
+// controller, serviço, middleware
 Route.post('/formulario/save-step1', 'StepsController.saveStep1')
 
 
