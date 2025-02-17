@@ -30,8 +30,8 @@ Route.resource('/usersAdm', 'UsersAdmsController')
 Route.post('login', 'UsersController.login') //LOGIN USUARIO  
 Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM
 
-
-
 Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticado
+
+Route.post('/formulario/save-step1', 'StepsController.saveStep1')
 
 
