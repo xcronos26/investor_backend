@@ -36,5 +36,10 @@ Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticad
 // controller, serviço, middleware
 Route.post('/formulario/save-step1', 'StepsController.saveStep1')
 Route.post('/steps/2', 'StepsController.saveStep2')
+Route.post('/step3', 'StepsController.saveStep3')
+Route.post('/steps/step4', 'StepsController.saveStep4')
+Route.post('/steps/step5', 'StepsController.saveStep5')
+Route.post('/formulario/step6', 'StepsController.saveStep6')
+Route.post('/formulario/step7', 'StepsController.saveStep7')
 
 
