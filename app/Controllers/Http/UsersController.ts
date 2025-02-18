@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import AuthService from 'App/Services/AuthService'
 
 export default class UsersController {
     public async index({ }: HttpContextContract) {
@@ -41,24 +42,23 @@ export default class UsersController {
         const user = await User.findOrFail(userId)
         await user.delete()
       }
+
+
     
       public async login({ auth, request, response }: HttpContextContract) {
         const email = request.input('email')
         const password = request.input('password')
     
         try {
-          const token = await auth.use('api').attempt(email, password)
-          const user = await User.findByOrFail('email', email) // Busca o usuário
-      
-          return { 
-            token: token.token,
-            userId: user.id, 
-            userName: user.name 
-          }
+          const result = await AuthService.login(auth, email, password)
+          return response.status(200).json(result)
         } catch {
           return response.unauthorized({ error: 'Credenciais inválidas' })
         }
       }
+
+      
+    
     
       public async dashboard({ auth }: HttpContextContract) {
         await auth.use('api').authenticate()

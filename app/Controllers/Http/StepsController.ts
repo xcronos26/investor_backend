@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import FormUser from 'App/Models/FormUser'
+import FormUserService from 'App/Services/FormUserService'
+import Step2Service from 'App/Services/Step2Service'
 
 export default class StepsController {
   public async saveStep1({ request, response }: HttpContextContract) {
@@ -8,21 +9,37 @@ export default class StepsController {
     ])
 
     try {
-      // Criar um novo formulário sem verificar nada
-      const formulario = new FormUser()
-      formulario.nome = nome
-      formulario.site = site
-      formulario.linkedin = linkedin
-      formulario.ano_fundacao = ano_fundacao
-      formulario.cidade = cidade
-      formulario.usuario_id = usuario_id
+      const result = await FormUserService.saveStep1({
+        nome,
+        site,
+        linkedin,
+        ano_fundacao,
+        cidade,
+        usuario_id,
+      })
 
-      await formulario.save()
-
-      return response.status(200).json({ message: 'Dados salvos com sucesso', id: formulario.id })
+      return response.status(200).json({ message: 'Dados salvos com sucesso', id: result.id })
     } catch (error) {
-      console.error('Erro ao salvar formulário:', error)
-      return response.status(500).json({ error: 'Erro ao processar formulário', details: error.message })
+      return response.status(500).json({ error: 'Erro ao processar formulário' })
+    }
+  }
+
+
+
+  public async saveStep2({ request, response }: HttpContextContract) {
+    const { usuario_id, modelo_negocio, vertical_atuacao, problema, solucao } = request.only([
+      'usuario_id', 'modelo_negocio', 'vertical_atuacao', 'problema', 'solucao'
+    ])
+
+    if (!usuario_id) {
+      return response.status(400).json({ error: 'Usuário não identificado' })
+    }
+
+    try {
+      const result = await Step2Service.saveStep2(usuario_id, modelo_negocio, vertical_atuacao, problema, solucao)
+      return response.status(200).json(result)
+    } catch (error) {
+      return response.status(404).json({ error: error.message })
     }
   }
 }
