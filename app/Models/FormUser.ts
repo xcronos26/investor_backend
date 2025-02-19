@@ -104,7 +104,7 @@ export default class Formulario extends BaseModel {
   public fonte_receita: string
 
   @column()
-  public recebeu_investimento: string
+  public recebeu_investimento: number
 
   @column()
   public mrr: string

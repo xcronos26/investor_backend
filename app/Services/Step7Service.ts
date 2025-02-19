@@ -28,7 +28,7 @@ export default class Step7Service {
       
         if (formulario) {
           formulario.fonte_receita = fonte_receita
-          formulario.recebeu_investimento = (recebeu_investimento === 'sim') ? 'sim' : 'não' // Convertendo para string 'sim' ou 'não'
+          formulario.recebeu_investimento = (recebeu_investimento === 'sim') ? 1 : 0 // ✅ Correção aqui
           formulario.mrr = mrr
           formulario.valor_ultima_capta = valor_ultima_capta
           formulario.ticket_medio = ticket_medio

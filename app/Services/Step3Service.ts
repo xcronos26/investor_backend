@@ -2,7 +2,7 @@ import FormUser from 'App/Models/FormUser'
 
 class FormularioService {
   public async saveStep3(
-    usuarioId: number,
+    usuario_id: number,
     clienteIdeal: string,
     propostaValor: string,
     maturidade: string,
@@ -10,7 +10,7 @@ class FormularioService {
   ) {
     try {
       // Verifica se já existe um formulário para esse usuário
-      const formulario = await FormUser.findBy('usuario_id', usuarioId)
+      const formulario = await FormUser.findBy('usuario_id', usuario_id)
 
       if (!formulario) {
         throw new Error('Formulário não encontrado para este usuário')
