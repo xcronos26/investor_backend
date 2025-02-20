@@ -56,10 +56,10 @@ export default class extends BaseSchema {
       // 🔹 Campos do Step 7
       table.string('fonte_receita').nullable() 
       table.boolean('recebeu_investimento').nullable()
-      table.float('mrr').nullable() 
+      table.string('mrr').nullable() 
       table.float('valor_ultima_capta').nullable() 
       table.float('ticket_medio').nullable() 
-      table.float('percentual_equity_negociado').nullable() 
+      table.string('percentual_equity_negociado').nullable() 
       table.boolean('status_captacao_aberta').nullable() 
       table.float('valor_buscado').nullable()
       table.float('percentual_equity_disponivel').nullable() 
