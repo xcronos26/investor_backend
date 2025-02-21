@@ -1,8 +1,6 @@
-// Formulario.ts
-
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import User from 'App/Models/User' // Importando a model de usuário
+import User from 'App/Models/User' 
 
 export default class Formulario extends BaseModel {
   public static table = 'formulario'
@@ -126,6 +124,22 @@ export default class Formulario extends BaseModel {
 
   @column()
   public percentual_equity_disponivel: string
+
+  // Step 8 (NOVOS CAMPOS)
+  @column()
+  public valuation: string
+
+  @column()
+  public cap_table_socios: string
+
+  @column()
+  public estrategia_saida: string
+
+  @column()
+  public alocacao_recursos: string
+
+  @column()
+  public pitch_link: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

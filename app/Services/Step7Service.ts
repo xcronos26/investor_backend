@@ -16,7 +16,7 @@ export default class Step7Service {
         usuario_id: number
         fonte_receita: string
         recebeu_investimento: string // 'sim' ou 'não'
-        mrr: number
+        mrr: string
         valor_ultima_capta: string
         ticket_medio: string
         percentual_equity_negociado: string

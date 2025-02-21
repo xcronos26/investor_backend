@@ -1,4 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
+
 import FormUserService from 'App/Services/FormUserService'
 import Step2Service from 'App/Services/Step2Service'
 import Step3Service from 'App/Services/Step3Service'
@@ -6,6 +8,7 @@ import Step4Service from 'App/Services/Step4Service'
 import Step5Service from 'App/Services/Step5Service'
 import Step6Service from 'App/Services/Step6Service'
 import Step7Service from 'App/Services/Step7Service'
+import Step8Service from 'App/Services/Step8Service'
 
 export default class StepsController {
   public async saveStep1({ request, response }: HttpContextContract) {
@@ -219,5 +222,49 @@ export default class StepsController {
   }
 
 
+
+
+  public async saveStep8({ request, response }: HttpContextContract) {
+    const { 
+      usuario_id, 
+      valuation, 
+      cap_table_socios, 
+      estrategia_saida, 
+      alocacao_recursos, 
+      pitch_link 
+    } = request.only([
+      'usuario_id', 'valuation', 'cap_table_socios', 'estrategia_saida', 'alocacao_recursos', 'pitch_link'
+    ])
+
+    if (!usuario_id) {
+      return response.status(400).json({ error: 'Usuário não identificado' })
+    }
+
+    try {
+      const result = await Step8Service.saveStep8({
+        usuario_id, 
+        valuation, 
+        cap_table_socios, 
+        estrategia_saida, 
+        alocacao_recursos, 
+        pitch_link
+      })
+
+      return response.status(200).json({ message: 'Dados do Step 8 salvos com sucesso', result })
+    } catch (error) {
+      return response.status(500).json({ error: 'Erro ao processar o Step 8', details: error.message })
+    }
+  }
+
+
+  public async getAllFormData({ response }: HttpContextContract) {
+    try {
+      // Buscando todos os dados da tabela 'formulario'
+      const formData = await Database.from('formulario').select('*')
   
+      return response.status(200).json(formData)
+    } catch (error) {
+      return response.status(500).json({ error: 'Erro ao buscar os dados', details: error.message })
+    }
+  }
 }

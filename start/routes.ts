@@ -41,5 +41,7 @@ Route.post('/steps/step4', 'StepsController.saveStep4')
 Route.post('/steps/step5', 'StepsController.saveStep5')
 Route.post('/formulario/step6', 'StepsController.saveStep6')
 Route.post('/formulario/step7', 'StepsController.saveStep7')
+Route.post('/formulario/step8', 'StepsController.saveStep8')
 
 
+Route.get('/formulario/todos', 'StepsController.getAllFormData')
