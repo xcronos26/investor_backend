@@ -24,8 +24,8 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.resource('/users', 'UsersController') //Todas as operações do CRUD 
-Route.resource('/usersAdm', 'UsersAdmsController')
+Route.resource('/users', 'UsersController') //Todas as operações do CRUD //REGISTRO USUARIO
+Route.resource('/usersAdm', 'UsersAdmsController')//REGISTRO ADM
 
 Route.post('login', 'UsersController.login') //LOGIN USUARIO  
 Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM
@@ -44,4 +44,4 @@ Route.post('/formulario/step7', 'StepsController.saveStep7')
 Route.post('/formulario/step8', 'StepsController.saveStep8')
 
 
-Route.get('/formulario/todos', 'StepsController.getAllFormData')
+Route.get('/formulario/todos', 'StepsController.getAllFormData') //VER RESPOSTAS DO FORMULARIO
