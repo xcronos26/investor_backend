@@ -11,7 +11,7 @@
 | ├── start/routes/cart.ts
 | ├── start/routes/customer.ts
 |
-| and then import them inside `start/routes.ts` as follows
+| and then import them inside start/routes.ts as follows
 |
 | import './routes/cart'
 | import './routes/customer'
@@ -43,5 +43,7 @@ Route.post('/formulario/step6', 'StepsController.saveStep6')
 Route.post('/formulario/step7', 'StepsController.saveStep7')
 Route.post('/formulario/step8', 'StepsController.saveStep8')
 
+Route.post('/investor-reports/save', 'InvestorReportsController.saveReport')
+Route.post('/respostas/save', 'PivoteiController.saveRespostas')
 
 Route.get('/formulario/todos', 'StepsController.getAllFormData') //VER RESPOSTAS DO FORMULARIO
