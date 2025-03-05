@@ -28,7 +28,7 @@ Route.resource('/users', 'UsersController') //Todas as operações do CRUD //REG
 Route.resource('/usersAdm', 'UsersAdmsController')//REGISTRO ADM
 
 Route.post('login', 'UsersController.login') //LOGIN USUARIO  
-Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM
+Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM*******
 
 Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticado
 
