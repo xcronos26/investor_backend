@@ -34,14 +34,14 @@ Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticad
 
 //aqui vc coloca um grupo e um middleware para validar os login, assim vc so precisa fazer uma unica vez.
 // controller, serviço, middleware
-Route.post('/formulario/save-step1', 'StepsController.saveStep1')
-Route.post('/steps/2', 'StepsController.saveStep2')
-Route.post('/step3', 'StepsController.saveStep3')
-Route.post('/steps/step4', 'StepsController.saveStep4')
-Route.post('/steps/step5', 'StepsController.saveStep5')
-Route.post('/formulario/step6', 'StepsController.saveStep6')
-Route.post('/formulario/step7', 'StepsController.saveStep7')
-Route.post('/formulario/step8', 'StepsController.saveStep8')
+Route.post('/formulario/save-step1', 'StepsController.saveStep1').middleware('auth')
+Route.post('/steps/2', 'StepsController.saveStep2').middleware('auth')
+Route.post('/step3', 'StepsController.saveStep3').middleware('auth')
+Route.post('/steps/step4', 'StepsController.saveStep4').middleware('auth')
+Route.post('/steps/step5', 'StepsController.saveStep5').middleware('auth')
+Route.post('/formulario/step6', 'StepsController.saveStep6').middleware('auth')
+Route.post('/formulario/step7', 'StepsController.saveStep7').middleware('auth')
+Route.post('/formulario/step8', 'StepsController.saveStep8').middleware('auth')
 
 Route.post('/investor-reports/save', 'InvestorReportsController.saveReport')
 Route.post('/respostas/save', 'PivoteiController.saveRespostas')
