@@ -32,4 +32,31 @@ export default class StatusController {
             return response.internalServerError({ error: 'Erro ao atualizar o status' });
         }
     }
+
+
+    
+    public async getStatusById({ params, response }: HttpContextContract) {
+        const { id } = params;
+
+        // Validação do ID
+        if (!id) {
+            return response.badRequest({ error: 'ID do formulário é necessário' });
+        }
+
+        try {
+            const formulario = await Database.from('formulario')
+                .where('id', id)
+                .select('status')
+                .first();
+
+            if (!formulario) {
+                return response.notFound({ error: 'Formulário não encontrado' });
+            }
+
+            return response.ok({ status: formulario.status });
+        } catch (error) {
+            console.error('Erro ao buscar o status:', error);
+            return response.internalServerError({ error: 'Erro ao buscar o status' });
+        }
+    }
 }
