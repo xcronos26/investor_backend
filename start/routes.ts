@@ -44,7 +44,7 @@ Route.post('/formulario/step7', 'StepsController.saveStep7').middleware('auth')
 Route.post('/formulario/step8', 'StepsController.saveStep8').middleware('auth')
 
 Route.put('/status/:id', 'StatusController.updateById') // alterar o status
-//listar o status de um Único ID 
+Route.get('/status/:id', 'StatusController.getStatusById')//listar o status de um Único ID 
 
 Route.post('/investor-reports/save', 'InvestorReportsController.saveReport')
 Route.post('/respostas/save', 'PivoteiController.saveRespostas')
