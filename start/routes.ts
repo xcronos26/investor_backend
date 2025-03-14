@@ -43,11 +43,13 @@ Route.post('/formulario/step6', 'StepsController.saveStep6').middleware('auth')
 Route.post('/formulario/step7', 'StepsController.saveStep7').middleware('auth')
 Route.post('/formulario/step8', 'StepsController.saveStep8').middleware('auth')
 
-Route.put('/status/:id', 'StatusController.updateById')//status tracking
-Route.get('/status/:id', 'StatusController.getStatusById')//status tracking
+Route.put('/status/:id', 'StatusController.updateById') // alterar o status
+//listar o status de um Único ID 
 
 Route.post('/investor-reports/save', 'InvestorReportsController.saveReport')
-
-Route.post('/api/respostas/:usuario_id', 'RespostaPivoteisController.store')//pivotei respostas
+Route.post('/respostas/save', 'PivoteiController.saveRespostas')
 
 Route.get('/formulario/todos', 'StepsController.getAllFormData') //VER RESPOSTAS DO FORMULARIO
+
+Route.get('/investor-reports', 'InvestorReportsController.getAllFormReportsData') //Visualização respostas Report
+Route.get('investor-reports/:id', 'InvestorReportsController.getAllInvestorReports') //Visualização gráficos Report
