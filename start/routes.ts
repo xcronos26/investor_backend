@@ -25,10 +25,10 @@ Route.get('/', async () => {
 })
 
 Route.resource('/users', 'UsersController') //Todas as operações do CRUD //REGISTRO USUARIO
-Route.resource('/usersAdm', 'UsersAdmsController')//REGISTRO ADM
+Route.resource('/usersAdm', 'UsersAdmsController') //REGISTRO ADM
 
 Route.post('login', 'UsersController.login') //LOGIN USUARIO  
-Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO  ADM
+Route.post('loginAdm', 'UsersAdmsController.loginAdm') //LOGIN USUARIO ADM
 
 Route.get('dashboard', 'UsersController.dashboard') //Mostra Usuario Autênticado
 
@@ -47,3 +47,7 @@ Route.post('/investor-reports/save', 'InvestorReportsController.saveReport')
 Route.post('/respostas/save', 'PivoteiController.saveRespostas')
 
 Route.get('/formulario/todos', 'StepsController.getAllFormData') //VER RESPOSTAS DO FORMULARIO
+
+// Rota para a One Page da Startup 
+Route.get('/startup/onepage', 'StartupsController.getOnePage').middleware(['auth', 'isStartup'])
+
