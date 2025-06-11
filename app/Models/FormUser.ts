@@ -39,6 +39,9 @@ export default class Formulario extends BaseModel {
   @column()
   public solucao: string
 
+  @column()
+  public fundadores: string | null // Armazenará JSON como string
+
   // Step 3
   @column()
   public cliente_ideal: string

@@ -2,24 +2,18 @@ import { DateTime } from 'luxon'
 import { BaseModel, column, beforeSave } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 
-export default class User extends BaseModel {
+export default class Historico extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public name: string
+  public startup_id: number
 
   @column()
-  public email: string
+  public data: DateTime
 
   @column()
-  public profile: string | null
-
-  @column()
-  public logo: string | null
-
-  @column({ serializeAs: null })
-  public password: string
+  public evento: string | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -27,10 +21,4 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @beforeSave()
-  public static async hashPassword (user: User) {
-    if (user.$dirty.password) {
-      user.password = await Hash.make(user.password)
-    }
-  }
 }
