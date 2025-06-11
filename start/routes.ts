@@ -51,3 +51,5 @@ Route.get('/formulario/todos', 'StepsController.getAllFormData') //VER RESPOSTAS
 // Rota para a One Page da Startup 
 Route.get('/startup/onepage', 'StartupsController.getOnePage').middleware(['auth', 'isStartup'])
 
+Route.get('/startup/me', 'StartupsController.me').middleware(['auth', 'isStartup']) //Rota para retornar dados do usuário autenticado
+

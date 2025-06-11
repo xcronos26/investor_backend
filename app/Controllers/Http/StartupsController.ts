@@ -2,6 +2,8 @@
 // associada ao usuário autenticado
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import FormUser from 'App/Models/FormUser'
+import HistoricoService from 'App/Services/HistoricoService'
+import InvestorReportService from 'App/Services/InvestorReportService'
 
 export default class StartupController {
   public async getOnePage({ auth, response }: HttpContextContract) {
@@ -53,4 +55,29 @@ export default class StartupController {
       })
     }
   }
+
+  public async me ({auth} : HttpContextContract) {
+    await auth.use('api').authenticate()
+    const reports = await InvestorReportService.getByUserId(auth.user!.id)
+    const report = reports[0] 
+
+    const logs = await HistoricoService.getByUserId(auth.user!.id)
+    console.log(logs)
+    return {
+      startup:{ 
+        id: auth.user!.id,
+        name: auth.user!.name,
+        logo: auth.user!.logo,
+        faturamento_mensal: report.faturamento,
+        mrr: report.mrr,
+        solucao: report.ajuda,
+      }, 
+      historico: logs.map(log => ({
+        data: log.data,
+        evento: log.evento,
+      })),
+      
+    }
+  }
 }
+
